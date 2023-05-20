@@ -6,12 +6,13 @@ $LA = $_POST['la'];
 $LVH = $_POST['lvh'];
 $PAP = $_POST['pap'];
 $EF = $_POST['ef'];
-$TR = $_POST['TR'];
+$TR = $_POST['tr'];
 //selectives and options
 $MR = $_POST['MR'];
 $AI = $_POST['AI'];
 $PI = $_POST['PI'];
 $DD = $_POST['DD'];
+$Today = date("Y-m-d");
 
 //switch for Aort
 switch(true){
@@ -52,7 +53,7 @@ switch(true){
     case in_array($LVH, range(14,18)):
         $LVH_str = 'Moderate';        
         break;
-    case ($LVH_number>"18"):
+    case ($LVH>"18"):
         $LVH_str = 'Severe';
 }
 
@@ -114,7 +115,7 @@ function Header()
     // Move to the right
     $this->Cell(80);
     // Title
-    $this->Cell(30,10,'Title',1,0,'C');
+    $this->Cell(30,10,'Trans Thoracic Echocardiography',0,0,'C');
     // Line break
     $this->Ln(20);
 }
@@ -136,8 +137,11 @@ $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Times','',12);
-for($i=1;$i<=40;$i++)
-    $pdf->Cell(0,10,'Printing line number '.$i,0,1);
+$pdf->Cell(40,10,"Patient Name: $name",0,0,'L');
+$pdf->Cell(120,10,$Today,0,0,'R');
+$pdf->Cell(40,30,"Atrial Situs is solitus",0,0,'L');
+// for($i=1;$i<=40;$i++)
+//     $pdf->Cell(0,10,'Printing line number '.$i,0,1);
 $pdf->Output();
 ob_end_flush(); 
 ?>
