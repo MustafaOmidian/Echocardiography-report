@@ -106,15 +106,16 @@ switch($EF){
 
 
 //Making PDF
-require('fpdf.php');
-class PDF extends FPDF
+require('alphapdf.php');
+class PDF extends AlphaPDF
 {
 // Page header
 function Header()
 {
     //logo
-    $this->Image('Icon.png',10,6,30);
-    // Arial bold 15
+    //$this->Image('Icon.png',10,6,30);
+    $this->SetTextColor(0,0,0);
+
     $this->SetFont('Courier','B',15);
     // Move to the right
     $this->Cell(80);
@@ -142,11 +143,16 @@ function Footer()
 $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
+$pdf->SetAlpha(0.65);
+$pdf->Image('background.png', 0, 0, $pdf->GetPageWidth()-30, $pdf->GetPageHeight()-50);
+// Arial bold 15
+$pdf->SetAlpha(1);
 $pdf->SetFont('Times','B',14);
-$pdf->Write(20,"\n");
+$pdf->Write(10,"\n");
 $pdf->Cell(40,10,"Patient Name: $name",0,0,'L');
 $pdf->Cell(120,10,$Today,0,0,'R');
 $pdf->SetFont('Times','',12);
+$pdf->Write(10,"\n");
 $pdf->Write(10,"\nAtrial Situs is solitus.");
 $pdf->Write(10,"\nAtrio Ventricular Connection is concordance");
 $pdf->Write(10,"\nVentriculoarteial Connection is concordance");
@@ -167,6 +173,7 @@ $pdf->Cell(120,10,"RIGHT Atrial is normal size",0,0,'R');
 $pdf->Write(10,"Diastolic Dysfunction (");
 $pdf->Write(10,$DD);
 $pdf->Write(10,")");
+$pdf->Write(15,"\n");
 $pdf->SetTextColor(255,0,0);
 $pdf->SetFont('Times','B',14);
 $pdf->Cell(120,10,"Global EF:",0,0,'R');
@@ -185,15 +192,17 @@ $pdf->Write(10,$TR_str);
 $pdf->Write(10,"\nPAPs:");
 $pdf->Write(10,$PAP);
 $pdf->Write(10,"MMHG");
+$pdf->Write(15,"\n");
 $pdf->Write(10,"\nIntertrial Septum is normal size");
 $pdf->Cell(120,10,"Interventricular Septum is normal size",0,0,'R');
 $pdf->Write(10,"\nAscending Aorta is normal size");
 $pdf->Cell(120,10,"Desending Aorta is normal size",0,0,'R');
-$pdf->Write(10,"\nAortic Arch");
+$pdf->Write(10,"\nAortic Arch ");
 $pdf->Write(10,$Aort_str);
-$pdf->Write(10,"dilated(");
+$pdf->Write(10," dilated(");
 $pdf->Write(10,$Aort);
 $pdf->Write(10,"MM)");
+$pdf->Write(5,"\n");
 if($Conclusion!=null)
     {
     $pdf->SetTextColor(255,0,0);
