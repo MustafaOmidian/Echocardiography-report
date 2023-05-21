@@ -12,6 +12,7 @@ $MR = $_POST['MR'];
 $AI = $_POST['AI'];
 $PI = $_POST['PI'];
 $DD = $_POST['DD'];
+$Conclusion =$_POST['Conclusion'];
 $Today = date("Y-m-d");
 
 //switch for Aort
@@ -128,7 +129,8 @@ function Footer()
     // Arial italic 8
     $this->SetFont('Arial','I',8);
     // Page number
-    $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
+    $this->Cell(0,10,'Dr. Bayatian Clinic',0,0,'C');
+    $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'R');
 }
 }
 
@@ -136,9 +138,11 @@ function Footer()
 $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
-$pdf->SetFont('Times','',12);
+$pdf->SetFont('Times','B',14);
+$pdf->Write(20,"\n");
 $pdf->Cell(40,10,"Patient Name: $name",0,0,'L');
 $pdf->Cell(120,10,$Today,0,0,'R');
+$pdf->SetFont('Times','',12);
 $pdf->Write(10,"\nAtrial Situs is solitus.");
 $pdf->Write(10,"\nAtrio Ventricular Connection is concordance");
 $pdf->Write(10,"\nVentriculoarteial Connection is concordance");
@@ -160,12 +164,29 @@ $pdf->Write(10,")");
 $pdf->Cell(120,10,"Global EF:",0,0,'R');
 $pdf->Write(10,$EF);
 $pdf->Write(10,"%");
-
-
-
-
-
-
+$pdf->Write(10,"\nMitral Valve : ");
+$pdf->Write(10,$MR);
+$pdf->Write(10,"\nAortic Valve : ");
+$pdf->Write(10,$Aort_str);
+$pdf->Write(10,"\nPulmonary Valve : ");
+$pdf->Write(10,$PI);
+$pdf->Write(10,"\nTricuspid Valve : ");
+$pdf->Write(10,$TR_str);
+$pdf->Write(10,"\nPAPs:");
+$pdf->Write(10,$PAP);
+$pdf->Write(10,"MMHG");
+$pdf->Write(10,"\nIntertrial Septum is normal size");
+$pdf->Cell(120,10,"Interventricular Septum is normal size",0,0,'R');
+$pdf->Write(10,"\nAscending Aorta is normal size");
+$pdf->Cell(120,10,"Desending Aorta is normal size",0,0,'R');
+$pdf->Write(10,"\nAortic Arch");
+$pdf->Write(10,$Aort_str);
+$pdf->Write(10,"dilated(");
+$pdf->Write(10,$Aort);
+$pdf->Write(10,"MM)");
+$pdf->Write(10,"\nConclusion:");
+$pdf->Write(10,"\n");
+$pdf->Write(10,$Conclusion);
 $pdf->Output();
 ob_end_flush(); 
 ?>
