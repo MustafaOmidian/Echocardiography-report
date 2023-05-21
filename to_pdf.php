@@ -143,8 +143,8 @@ function Footer()
 $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
-$pdf->SetAlpha(0.65);
-$pdf->Image('background.png', 0, 0, $pdf->GetPageWidth()-30, $pdf->GetPageHeight()-50);
+$pdf->SetAlpha(0.43);
+$pdf->Image('background.png', 0, 25, $pdf->GetPageWidth(), $pdf->GetPageHeight()-50);
 // Arial bold 15
 $pdf->SetAlpha(1);
 $pdf->SetFont('Times','B',14);
@@ -176,7 +176,7 @@ $pdf->Write(10,")");
 $pdf->Write(15,"\n");
 $pdf->SetTextColor(255,0,0);
 $pdf->SetFont('Times','B',14);
-$pdf->Cell(120,10,"Global EF:",0,0,'R');
+$pdf->Cell(150,10,"Global EF:",0,0,'R');
 $pdf->Write(10,$EF);
 $pdf->Write(10,"%");
 $pdf->SetTextColor(0,0,0);
