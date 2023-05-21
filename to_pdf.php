@@ -14,6 +14,9 @@ $PI = $_POST['PI'];
 $DD = $_POST['DD'];
 $Conclusion =$_POST['Conclusion'];
 $Today = date("Y-m-d");
+$pageWidth = 210;
+$pageHeight = 297;
+
 
 //switch for Aort
 switch(true){
@@ -109,10 +112,10 @@ class PDF extends FPDF
 // Page header
 function Header()
 {
-    // Logo
+    //logo
     $this->Image('Icon.png',10,6,30);
     // Arial bold 15
-    $this->SetFont('Arial','B',15);
+    $this->SetFont('Courier','B',15);
     // Move to the right
     $this->Cell(80);
     // Title
@@ -127,6 +130,7 @@ function Footer()
     // Position at 1.5 cm from bottom
     $this->SetY(-15);
     // Arial italic 8
+    $this->SetTextColor(0,0,0);
     $this->SetFont('Arial','I',8);
     // Page number
     $this->Cell(0,10,'Dr. Bayatian Clinic',0,0,'C');
@@ -152,18 +156,24 @@ $pdf->Write(10," LVH (");
 $pdf->Write(10,$LVH);
 $pdf->Write(10,"MM)");
 $pdf->Cell(120,10,"RIGHT Ventricle is normal size",0,0,'R');
+$pdf->SetTextColor(255,0,0);
 $pdf->Write(10,"\nLeft Atrial is ");
 $pdf->Write(10,$LA_str);
 $pdf->Write(10," dilated (");
 $pdf->Write(10,$LA);
 $pdf->Write(10,"MM)");
+$pdf->SetTextColor(0,0,0);
 $pdf->Cell(120,10,"RIGHT Atrial is normal size",0,0,'R');
 $pdf->Write(10,"Diastolic Dysfunction (");
 $pdf->Write(10,$DD);
 $pdf->Write(10,")");
+$pdf->SetTextColor(255,0,0);
+$pdf->SetFont('Times','B',14);
 $pdf->Cell(120,10,"Global EF:",0,0,'R');
 $pdf->Write(10,$EF);
 $pdf->Write(10,"%");
+$pdf->SetTextColor(0,0,0);
+$pdf->SetFont('Times','',12);
 $pdf->Write(10,"\nMitral Valve : ");
 $pdf->Write(10,$MR);
 $pdf->Write(10,"\nAortic Valve : ");
@@ -184,9 +194,15 @@ $pdf->Write(10,$Aort_str);
 $pdf->Write(10,"dilated(");
 $pdf->Write(10,$Aort);
 $pdf->Write(10,"MM)");
-$pdf->Write(10,"\nConclusion:");
-$pdf->Write(10,"\n");
-$pdf->Write(10,$Conclusion);
-$pdf->Output();
+if($Conclusion!=null)
+    {
+    $pdf->SetTextColor(255,0,0);
+    $pdf->Write(10,"\nConclusion:");
+    $pdf->Write(10,"\n");
+    $pdf->Write(10,$Conclusion);
+    $pdf->SetTextColor(0,0,0);
+}
+
+$pdf->Output('D', "$name-$Today.pdf", true);
 ob_end_flush(); 
 ?>
