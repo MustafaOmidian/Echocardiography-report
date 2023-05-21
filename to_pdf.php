@@ -139,9 +139,33 @@ $pdf->AddPage();
 $pdf->SetFont('Times','',12);
 $pdf->Cell(40,10,"Patient Name: $name",0,0,'L');
 $pdf->Cell(120,10,$Today,0,0,'R');
-$pdf->Cell(40,30,"Atrial Situs is solitus",0,0,'L');
-// for($i=1;$i<=40;$i++)
-//     $pdf->Cell(0,10,'Printing line number '.$i,0,1);
+$pdf->Write(10,"\nAtrial Situs is solitus.");
+$pdf->Write(10,"\nAtrio Ventricular Connection is concordance");
+$pdf->Write(10,"\nVentriculoarteial Connection is concordance");
+$pdf->Write(10,"\nLeft Ventricle IS ");
+$pdf->Write(10,$LVH_str);
+$pdf->Write(10," LVH (");
+$pdf->Write(10,$LVH);
+$pdf->Write(10,"MM)");
+$pdf->Cell(120,10,"RIGHT Ventricle is normal size",0,0,'R');
+$pdf->Write(10,"\nLeft Atrial is ");
+$pdf->Write(10,$LA_str);
+$pdf->Write(10," dilated (");
+$pdf->Write(10,$LA);
+$pdf->Write(10,"MM)");
+$pdf->Cell(120,10,"RIGHT Atrial is normal size",0,0,'R');
+$pdf->Write(10,"Diastolic Dysfunction (");
+$pdf->Write(10,$DD);
+$pdf->Write(10,")");
+$pdf->Cell(120,10,"Global EF:",0,0,'R');
+$pdf->Write(10,$EF);
+$pdf->Write(10,"%");
+
+
+
+
+
+
 $pdf->Output();
 ob_end_flush(); 
 ?>
