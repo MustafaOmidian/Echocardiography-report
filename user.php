@@ -11,8 +11,19 @@
     <input type="number" name="pap">
     <p>EF</p>
     <input type="number" name="ef">
-    <p>TR</p>
-    <input type="number" name="tr">
+    <p>TAPSE</p>
+    <input type="number" name="TAPSE">
+    <br>
+    <br>
+    <label for="TF">TR</label>
+    <br>
+    <br>
+    <select id="TF" name="TR">
+        <option value="Normal">Normal</option>
+        <option value="Mild">Mild</option>
+        <option value="Moderate">Moderate</option>
+		<option value="Severe">Severe</option>
+    </select>
     <br>
     <br>
     <label for="TF">DD</label>
@@ -58,6 +69,17 @@
         <option value="Moderate">Moderate</option>
 		<option value="Severe">Severe</option>
 
+    </select>
+    <br>
+    <br>
+    <label for="TF">RV</label>
+    <br>
+    <br>
+    <select id="TF" name="RV">
+        <option value="Normal">Normal</option>
+        <option value="Mild">Mild</option>
+        <option value="Moderate">Moderate</option>
+		<option value="Severe">Severe</option>
     </select>
     <br>
     <br>
