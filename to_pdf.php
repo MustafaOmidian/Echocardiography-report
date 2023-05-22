@@ -114,13 +114,13 @@ function Header()
 {
     //logo
     //$this->Image('Icon.png',10,6,30);
-    $this->SetTextColor(0,0,0);
+    $this->SetTextColor(157,157,166);
 
-    $this->SetFont('Courier','B',15);
+    $this->SetFont('Courier','B',19);
     // Move to the right
     $this->Cell(80);
     // Title
-    $this->Cell(30,10,'Trans Thoracic Echocardiography',0,0,'C');
+    $this->Cell(30,10,'Transthoracic Echocardiography',0,0,'C');
     // Line break
     $this->Ln(20);
 }
@@ -134,7 +134,7 @@ function Footer()
     $this->SetTextColor(0,0,0);
     $this->SetFont('Arial','I',8);
     // Page number
-    $this->Cell(0,10,'Dr. Bayatian Clinic',0,0,'C');
+    $this->Cell(0,10,'Dr. Bayatian Clinic --- 02122701082',0,0,'C');
     $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'R');
 }
 }
@@ -150,7 +150,7 @@ $pdf->SetAlpha(1);
 $pdf->SetFont('Times','B',14);
 $pdf->Write(10,"\n");
 $pdf->Cell(40,10,"Patient Name: $name",0,0,'L');
-$pdf->Cell(120,10,$Today,0,0,'R');
+$pdf->Cell(120,10,"Date: ".$Today,0,0,'R');
 $pdf->SetFont('Times','',12);
 $pdf->Write(10,"\n");
 $pdf->Write(10,"\nAtrial Situs is solitus.");
@@ -175,7 +175,7 @@ $pdf->Write(10,$DD);
 $pdf->Write(10,")");
 $pdf->Write(15,"\n");
 $pdf->SetTextColor(255,0,0);
-$pdf->SetFont('Times','B',14);
+$pdf->SetFont('Times','B',15);
 $pdf->Cell(150,10,"Global EF:",0,0,'R');
 $pdf->Write(10,$EF);
 $pdf->Write(10,"%");
